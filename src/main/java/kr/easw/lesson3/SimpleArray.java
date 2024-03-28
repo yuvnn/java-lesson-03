@@ -1,7 +1,5 @@
 package kr.easw.lesson3;
 
-import java.util.Arrays;
-
 public class SimpleArray {
     private static int[] arrays = new int[10];
 
@@ -34,6 +32,7 @@ public class SimpleArray {
      * * ^2는 제곱의 의미로 사용되었습니다.
      */
     private static void fillArray(int index) {
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
+        arrays[index] = index*7/5;
+        arrays[index] *= arrays[index];
     }
 }
