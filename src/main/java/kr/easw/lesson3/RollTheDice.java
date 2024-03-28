@@ -28,7 +28,7 @@ public class RollTheDice {
     private static void fillArray(double result) {
         int tmp = (int)result/60;
         if(tmp >= frequency.length)
-            frequency = extendArray(tmp+1);
+            frequency = extendArray(tmp+1); // 주의 : index와 자연수 다름 주의 
 
         frequency[tmp]++;
     }
