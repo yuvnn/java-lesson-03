@@ -49,7 +49,37 @@ public class SnakeGameWithoutTails {
      * 만약 사용자의 입력이 종료(0)였다면, false값을 반환하여 게임을 종료해야 합니다.
      */
     private static boolean nextDirection(String keyword) {
-        throw new RuntimeException("이 코드 라인을 지우고, 이곳에서 작성하십시오.");
+        int X = location.x;
+        int Y = location.y;
+        switch (keyword) {
+            case "r":
+                if (Y < BOARD_SIZE - 1)
+                    Y++;
+                break;
+            case "l":
+                if (Y > 0)
+                    Y--;
+                break;
+            case "u":
+                if (X > 0)
+                    X--;
+                break;
+            case "d":
+                if (X < BOARD_SIZE - 1)
+                    X++;
+                break;
+            case "0":
+                return false; // 게임 종료
+        }
+
+        if (board[X][Y] == 2) {
+            score++;
+            board[X][Y] = 0;
+        }
+
+        location = new SnakeLocation(X, Y);
+        return true;
+
     }
 
     private static void printBoard() {
@@ -70,7 +100,7 @@ public class SnakeGameWithoutTails {
                         System.out.print("◼");
                         break;
                     case 2:
-                        System.out.println("* ");
+                        System.out.print("* ");
                         break;
                 }
             }
@@ -84,7 +114,7 @@ public class SnakeGameWithoutTails {
         for (int i = 0; i < toPlace; i++) {
             int retry = 0;
             while (retry < 5) {
-                SnakeLocation locate = new SnakeLocation(RANDOM.nextInt() * BOARD_SIZE, RANDOM.nextInt() * BOARD_SIZE);
+                SnakeLocation locate = new SnakeLocation((int) (RANDOM.nextDouble() * (BOARD_SIZE - 1)), (int) (RANDOM.nextDouble() * (BOARD_SIZE - 1)));
                 if (board[locate.getX()][locate.getY()] != 0) {
                     retry++;
                     continue;
